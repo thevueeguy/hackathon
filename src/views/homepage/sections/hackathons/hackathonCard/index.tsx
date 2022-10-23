@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export interface IhackathonCardProps {
   name: string;
@@ -7,14 +8,16 @@ export interface IhackathonCardProps {
   EndDate: Date;
   description: String;
   image: Blob;
-  level: string;
+  level: string; 
+  id: Number; 
 }
 
 const HackathonCard: React.FunctionComponent<IhackathonCardProps> = (
   props: IhackathonCardProps
 ) => {
   const image: any = props.image;
-  return (  
+
+  return (
     <Card style={{ width: "18rem" }}>
       <Card.Img variant="top" src={image} />
       <Card.Body>
@@ -23,7 +26,14 @@ const HackathonCard: React.FunctionComponent<IhackathonCardProps> = (
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Link
+          to={`hackathonPage/${props.id}`}
+          className="text-decoration-none"
+        >
+          <Button variant="success" type="submit" className="fs-5 px-4 mb-5">
+            Participate Now
+          </Button>
+        </Link>
       </Card.Body>
     </Card>
   );
