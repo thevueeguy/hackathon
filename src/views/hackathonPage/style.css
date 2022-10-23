@@ -1,0 +1,20 @@
+.active {
+    border-bottom: 0.3rem solid green;
+}
+
+.button-edit {
+    border-radius: 12px;
+    padding: 0.5rem 2rem;
+}
+
+.button-delete {
+    border-radius: 12px;
+    padding: 0.5rem 2rem;
+}
+ .button-p {
+    position: absolute;
+    right: 10rem;
+    display: flex;
+    justify-content: space-between;
+    width: 12%;
+ }

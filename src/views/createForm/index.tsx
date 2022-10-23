@@ -57,7 +57,6 @@ const CreateForm: React.FunctionComponent<ICreateFormProps> = (props) => {
           <Form.Label className="fs-5 mb-4">End Date</Form.Label>
           <Form.Control
             type="date"
-            min = {"2022-10-21"}
             onChange={(e) => setEndDate(e.target.value)}
           />
         </Form.Group>
