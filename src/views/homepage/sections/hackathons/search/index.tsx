@@ -13,13 +13,13 @@ interface ISearchProps {
 const Search: React.FunctionComponent<ISearchProps> = (props) => {
   return (
     <div
-      style={{ height: "30vh", backgroundColor: "rgb(4, 45, 63)" }}
+      style={{ minHeight: "20rem", backgroundColor: "rgb(4, 45, 63)" }}
     >
       <p className="text-light text-center fw-bold fs-2 py-5">
         Explore Challenges
       </p>
 
-      <Container className="h-25 ">
+      <Container className="h-25 mb-5 pb-5">
         <InputGroup className="d-flex flex-row justify-content-center">
             <Form.Group className="w-75 px-5">
               <Form.Control as="input" placeholder="🔍 Search" aria-label="Text input" className="rounded- fs-5 px-4" />
