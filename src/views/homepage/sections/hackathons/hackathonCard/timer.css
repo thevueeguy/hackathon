@@ -1,8 +1,12 @@
 
   .container-timer {
     color: #333;
-    margin: 0;
+    margin-bottom: 2rem;
     text-align: center;
+  }
+
+  .container-timer ul {
+    padding-left: 0 !important;
   }
   
   .li-timer {
@@ -20,17 +24,7 @@
     font-size: 1.5rem;
   }
 
-  
-  @media all and (max-width: 768px) {
-    .headline-timer {
-      font-size: calc(1.5rem * var(--smaller));
-    }
-    
-    .li-timer {
-      font-size: calc(1.125rem * var(--smaller));
-    }
-    
-    .span-timer {
-      font-size: calc(3.375rem * var(--smaller));
-    }
+  .headline-timer {
+    font-size: 1.2rem;
+    color: rgb(124, 123, 123);
   }

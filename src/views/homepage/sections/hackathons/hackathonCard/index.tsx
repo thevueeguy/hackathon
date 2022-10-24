@@ -36,11 +36,10 @@ const HackathonCard: React.FunctionComponent<IhackathonCardProps> = (
     >
       <Card.Img variant="top" src={image} />
       <Card.Body>
-        <Card.Title>{props.name}</Card.Title>
-        <Card.Text>{startDate}</Card.Text>
+        <Card.Title className="h-25 pt-2" >{props.name}</Card.Title>
 
         <div className="container-timer">
-          <h1 id="headline-timer">{' '}</h1>
+          <h5 id={`hackathonPage/${props.id}headline-timer`} className="headline-timer">{' '}</h5>
           <div id="countdown-timer">
             <ul>
               <li className="li-timer">

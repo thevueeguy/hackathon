@@ -23,6 +23,7 @@ export function initializeClock(id: any, endtime: any) {
 
     const timeinterval = setInterval(() => {
       const t = getTimeRemaining(endtime);
+      const headline: any = document.getElementById(`${id}headline-timer`);
       const days: any = document.getElementById(`${id}days`);
       const hours: any = document.getElementById(`${id}hours`);
       const minutes: any = document.getElementById(`${id}minutes`);
@@ -32,9 +33,11 @@ export function initializeClock(id: any, endtime: any) {
       hours.innerHTML = t.hours;
       minutes.innerHTML = t.minutes;
       seconds.innerHTML = t.seconds;
+      headline.innerHTML = "Starts in";
 
       if (t.total <= 0) {
         clearInterval(timeinterval);
+      } else {
       }
     },1000);
   }
