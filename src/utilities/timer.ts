@@ -20,13 +20,18 @@ function getTimeRemaining(endtime: any){
 
 export function initializeClock(id: any, endtime: any) {
     // console.log(   Date.parse((new Date(endtime).toString())) -  Date.parse((new Date()).toString())  ); 
-    const clock: any = document.getElementById(id);
+
     const timeinterval = setInterval(() => {
       const t = getTimeRemaining(endtime);
-      clock.innerHTML = 'days: ' + t.days + ' ' +
-                        'hours: '+ t.hours + ' ' +
-                        'min: ' + t.minutes + ' ' +
-                        'sec: ' + t.seconds;
+      const days: any = document.getElementById(`${id}days`);
+      const hours: any = document.getElementById(`${id}hours`);
+      const minutes: any = document.getElementById(`${id}minutes`);
+      const seconds: any = document.getElementById(`${id}seconds`);
+
+      days.innerHTML = t.days;
+      hours.innerHTML = t.hours;
+      minutes.innerHTML = t.minutes;
+      seconds.innerHTML = t.seconds;
 
       if (t.total <= 0) {
         clearInterval(timeinterval);

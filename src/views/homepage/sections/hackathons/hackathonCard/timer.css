@@ -1,0 +1,36 @@
+
+  .container-timer {
+    color: #333;
+    margin: 0;
+    text-align: center;
+  }
+  
+  .li-timer {
+    display: inline-block;
+    font-size: 0.5em;
+    list-style-type: none;
+    padding: 0.5em;
+    text-transform: uppercase;
+    font-size: 0.6rem;
+    font-weight: 700;
+  }
+  
+  .span-timer {
+    display: block;
+    font-size: 1.5rem;
+  }
+
+  
+  @media all and (max-width: 768px) {
+    .headline-timer {
+      font-size: calc(1.5rem * var(--smaller));
+    }
+    
+    .li-timer {
+      font-size: calc(1.125rem * var(--smaller));
+    }
+    
+    .span-timer {
+      font-size: calc(3.375rem * var(--smaller));
+    }
+  }
