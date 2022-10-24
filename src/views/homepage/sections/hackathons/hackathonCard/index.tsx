@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import * as React from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import format from "../../../../../utilities/formatDate";
@@ -18,12 +18,9 @@ const HackathonCard: React.FunctionComponent<IhackathonCardProps> = (
   props: IhackathonCardProps
 ) => {
   const image: any = props.image;
-  const endDate: String = props.EndDate;
+  const startDate: String = props.StartDate;
 
-  useEffect(() => {
-    console.log(format(props.StartDate));
-    initializeClock("clockdiv", format(props.StartDate));
-  })
+  initializeClock(`hackathonPage/${props.id}`, format(props.StartDate));
 
   return (
     <Card
@@ -41,9 +38,9 @@ const HackathonCard: React.FunctionComponent<IhackathonCardProps> = (
       <Card.Body>
         <Card.Title>{props.name}</Card.Title>
         <Card.Text>
-          {endDate}
+          {startDate}
         </Card.Text>
-        <div id="clockdiv"></div>
+        <div id={`hackathonPage/${props.id}`}></div>
         <Link to={`hackathonPage/${props.id}`} className="text-decoration-none">
           <Button variant="success" type="submit" className="fs-5 px-4 mb-5">
             Participate Now
