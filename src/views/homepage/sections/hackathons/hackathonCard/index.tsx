@@ -44,7 +44,7 @@ const HackathonCard: React.FunctionComponent<IhackathonCardProps> = (
       />
       <Card.Body className="d-flex flex-column justify-content-around body-height">
 
-        <p className="w-50 mx-auto py-1 rounded fw-bold" id={`hackathonPage/${props.id}badge-timer`}></p>
+        <p className="w-50 mx-auto py-1 mb-4 rounded fw-bold" id={`hackathonPage/${props.id}badge-timer`}></p>
 
         <Card.Title className="title-height">{props.name}</Card.Title>
 
