@@ -19,13 +19,13 @@ const Hackathons: React.FunctionComponent<IHackathonsProps> = (props) => {
 
   return (
     <div>
-      <Search />
+      <Search setCards={setCards} />
       <Container fluid className="p-5">
         <Row
           className="justify-content-center col-12"
           style={{ padding: "0 10rem" }}
         >
-          {cards &&
+          {cards && cards.length > 0 ? (
             cards.map((item: any, index) => {
               return (
                 <HackathonCard
@@ -39,7 +39,10 @@ const Hackathons: React.FunctionComponent<IHackathonsProps> = (props) => {
                   level={item.level}
                 />
               );
-            })}
+            })
+          ) : (
+            <h1 className="text-center">NO CHALLENGES LISTED CURRENTLY</h1>
+          )}
         </Row>
       </Container>
     </div>

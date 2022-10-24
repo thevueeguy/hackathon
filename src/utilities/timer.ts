@@ -62,4 +62,6 @@ export function initializeClock(id: any, startTime: any, endTime: any) {
       headline.innerHTML = "Starts in";
     }
   }, 1000);
+
+  return timeinterval;
 }

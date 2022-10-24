@@ -1,5 +1,5 @@
-import React from "react";
-import { Badge, Button, Card } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import format from "../../../../../utilities/formatDate";
 import { initializeClock } from "../../../../../utilities/timer";
@@ -19,12 +19,18 @@ const HackathonCard: React.FunctionComponent<IhackathonCardProps> = (
   props: IhackathonCardProps
 ) => {
   const image: any = props.image;
+  
+  useEffect(() => {
+    const timeInterval = initializeClock(
+      `hackathonPage/${props.id}`,
+      format(props.StartDate),
+      format(props.EndDate)
+    );
 
-  initializeClock(
-    `hackathonPage/${props.id}`,
-    format(props.StartDate),
-    format(props.EndDate)
-  );
+    return ()=> {
+      clearInterval(timeInterval);
+    }
+  }, [props.EndDate, props.StartDate, props.id])
 
   return (
     <Card
