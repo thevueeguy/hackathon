@@ -10,7 +10,7 @@ const Footer: React.FunctionComponent<IFooterProps> = (props) => {
       <div className="bg-light text-center p-3 fw-bold">
         © 2022 Copyright 
         <a className="text-dark fw-bold  text-decoration-none" href="/">
-          <pre className="d-inline fs-5">  DPhi.tech  </pre>  
+          <pre className="d-inline fs-5"> | DPhi.tech | Sharad Kushwah  </pre>  
         </a>
       </div>
     </footer>

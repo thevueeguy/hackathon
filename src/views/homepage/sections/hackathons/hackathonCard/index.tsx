@@ -19,28 +19,27 @@ const HackathonCard: React.FunctionComponent<IhackathonCardProps> = (
   props: IhackathonCardProps
 ) => {
   const image: any = props.image;
-  const startDate: String = props.StartDate;
 
-  initializeClock(`hackathonPage/${props.id}`, format(props.StartDate));
+  initializeClock(`hackathonPage/${props.id}`, format(props.StartDate), format(props.EndDate));
 
   return (
     <Card
       style={{
-        width: "24rem",
+        maxWidth: "24rem",
         margin: "2rem",
         padding: 0,
         borderRadius: "1rem",
-        textAlign: "center",
+        textAlign: "center"
       }}
       className="shadow-lg bg-white "
     >
-      <Card.Img variant="top" src={image} />
-      <Card.Body>
-        <Card.Title className="h-25 pt-2" >{props.name}</Card.Title>
+      <Card.Img variant="top" src={image} className="rounded-top-left-1 rounded-top-right-1 img-fluid image-height"/>
+      <Card.Body className="d-flex flex-column justify-content-around body-height">
+        <Card.Title className="title-height" >{props.name}</Card.Title>
 
         <div className="container-timer">
           <h5 id={`hackathonPage/${props.id}headline-timer`} className="headline-timer">{' '}</h5>
-          <div id="countdown-timer">
+          <div id={`hackathonPage/${props.id}countdown-timer`} className="countdown-timer">
             <ul>
               <li className="li-timer">
                 <span id={`hackathonPage/${props.id}days`} className="span-timer" ></span>days
@@ -60,7 +59,7 @@ const HackathonCard: React.FunctionComponent<IhackathonCardProps> = (
         </div>
 
         <Link to={`hackathonPage/${props.id}`} className="text-decoration-none">
-          <Button variant="success" type="submit" className="fs-5 px-4 mb-5">
+          <Button variant="success" type="submit" className="">
             Participate Now
           </Button>
         </Link>
