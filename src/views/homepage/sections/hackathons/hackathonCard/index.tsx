@@ -1,9 +1,9 @@
 import React from "react";
-import { Button, Card } from "react-bootstrap";
+import { Badge, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import format from "../../../../../utilities/formatDate";
 import { initializeClock } from "../../../../../utilities/timer";
-import "./timer.css"
+import "./timer.css";
 
 export interface IhackathonCardProps {
   name: String;
@@ -20,7 +20,11 @@ const HackathonCard: React.FunctionComponent<IhackathonCardProps> = (
 ) => {
   const image: any = props.image;
 
-  initializeClock(`hackathonPage/${props.id}`, format(props.StartDate), format(props.EndDate));
+  initializeClock(
+    `hackathonPage/${props.id}`,
+    format(props.StartDate),
+    format(props.EndDate)
+  );
 
   return (
     <Card
@@ -29,30 +33,61 @@ const HackathonCard: React.FunctionComponent<IhackathonCardProps> = (
         margin: "2rem",
         padding: 0,
         borderRadius: "1rem",
-        textAlign: "center"
+        textAlign: "center",
       }}
       className="shadow-lg bg-white "
     >
-      <Card.Img variant="top" src={image} className="rounded-top-left-1 rounded-top-right-1 img-fluid image-height"/>
+      <Card.Img
+        variant="top"
+        src={image}
+        className="rounded-top-left-1 rounded-top-right-1 img-fluid image-height"
+      />
       <Card.Body className="d-flex flex-column justify-content-around body-height">
-        <Card.Title className="title-height" >{props.name}</Card.Title>
+
+        <p className="w-50 mx-auto py-1 rounded fw-bold" id={`hackathonPage/${props.id}badge-timer`}></p>
+
+        <Card.Title className="title-height">{props.name}</Card.Title>
 
         <div className="container-timer">
-          <h5 id={`hackathonPage/${props.id}headline-timer`} className="headline-timer">{' '}</h5>
-          <div id={`hackathonPage/${props.id}countdown-timer`} className="countdown-timer">
+          <h5
+            id={`hackathonPage/${props.id}headline-timer`}
+            className="headline-timer"
+          >
+            {" "}
+          </h5>
+          <div
+            id={`hackathonPage/${props.id}countdown-timer`}
+            className="countdown-timer"
+          >
             <ul>
               <li className="li-timer">
-                <span id={`hackathonPage/${props.id}days`} className="span-timer" ></span>days
+                <span
+                  id={`hackathonPage/${props.id}days`}
+                  className="span-timer"
+                ></span>
+                days
               </li>
-              
+
               <li className="li-timer">
-                <span id={`hackathonPage/${props.id}hours`} className="span-timer" ></span>Hours
+                <span
+                  id={`hackathonPage/${props.id}hours`}
+                  className="span-timer"
+                ></span>
+                Hours
               </li>
               <li className="li-timer">
-                <span id={`hackathonPage/${props.id}minutes`} className="span-timer" ></span>Minutes
+                <span
+                  id={`hackathonPage/${props.id}minutes`}
+                  className="span-timer"
+                ></span>
+                Minutes
               </li>
               <li className="li-timer">
-                <span id={`hackathonPage/${props.id}seconds`} className="span-timer" ></span>Seconds
+                <span
+                  id={`hackathonPage/${props.id}seconds`}
+                  className="span-timer"
+                ></span>
+                Seconds
               </li>
             </ul>
           </div>
