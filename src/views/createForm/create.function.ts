@@ -9,6 +9,7 @@ export interface formData {
   image: FileList;
   level: String | null;
 }
+
 export interface formDataEdit {
   name: String;
   startDate: String;
