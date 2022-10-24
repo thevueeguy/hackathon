@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Button, Container, Nav, Navbar, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { Link, useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import "./style.css";
-import { ToastContainer, toast } from "react-toastify";
 
 interface IHackathonPageProps {}
 
@@ -12,7 +12,6 @@ const HackathonPage: React.FunctionComponent<IHackathonPageProps> = (props) => {
   const [startDate, setStartDate] = useState<String | null>();
   const [description, setDescription] = useState<String | null>();
   const [level, setLevel] = useState<String | null>();
-  const [selectedKey, setSelectedKey] = useState<String>("");
 
   const navActiveHandler = function(event: string | null) {
 
@@ -55,7 +54,9 @@ const HackathonPage: React.FunctionComponent<IHackathonPageProps> = (props) => {
           <Nav className="me-auto " onSelect={(e) => navActiveHandler(e)}>
             <Nav.Link href="#" className="fw-bold fs-4 text-dark" id="overview" eventKey="overview">Overview</Nav.Link>
             <div className="button-p ">
-              <Button variant="success" className="button-edit fw-bold "> Edit </Button>
+              <Link to={`editFormPage`}>
+                <Button variant="success" className="button-edit fw-bold "> Edit </Button>
+              </Link>
               <Button variant="outline-danger" className="button-delete fw-bold" onClick={handleDelete}> Delete </Button>
             </div>
           </Nav>

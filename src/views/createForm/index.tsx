@@ -1,8 +1,9 @@
 import React, { FormEvent, useRef, useState } from "react";
 import { Button, Container, Dropdown, Form } from "react-bootstrap";
-import { ToastContainer, toast } from "react-toastify";
+import { useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import uploadData from "./create.function";
+import uploadData, { editData } from "./create.function";
 
 interface ICreateFormProps {
   //
@@ -19,12 +20,18 @@ const CreateForm: React.FunctionComponent<ICreateFormProps> = (props) => {
   const [image, setImage] = useState<FileList | null>(null);
   const [level, setLevel] = useState<String | null>("Easy");
 
+  const params = useParams();
+
   function addHackathon(e: FormEvent) {
     e.preventDefault();
     if(name === "" || startDate === "" || endDate === "" || description === "" || image === null || level === "") {
       toast("Enter all the details!");
     } else {
-      uploadData({name, startDate, endDate, description, image, level});
+      if(params.id) {
+        editData({name, startDate, endDate, description, image, level, id: params.id});
+      } else {
+        uploadData({name, startDate, endDate, description, image, level});
+      }
     }
     FormRef.current.reset();
     setImage(null);

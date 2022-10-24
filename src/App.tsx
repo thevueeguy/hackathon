@@ -19,6 +19,7 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
         <Route path="/" element={<Homepage />} />
         <Route path="/createForm" element={<CreateForm />} />
         <Route path="/hackathonPage/:id" element={<HackathonPage />} />
+        <Route path="/hackathonPage/:id/editFormPage" element={<CreateForm />} />
       </Routes>
       <Footer />
     </div>
