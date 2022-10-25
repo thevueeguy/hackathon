@@ -18,7 +18,7 @@ const Hackathons: React.FunctionComponent<IHackathonsProps> = (props) => {
   }, []);
 
   return (
-    <div>
+    <div style={{backgroundColor:"#003145"}}>
       <Search setCards={setCards} />
       <Container fluid className="p-5">
         <Row

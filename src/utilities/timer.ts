@@ -19,9 +19,8 @@ function getTimeRemaining(startTime: any) {
 }
 
 export function initializeClock(id: any, startTime: any, endTime: any) {
-  // console.log(   Date.parse((new Date(startTime).toString())) -  Date.parse((new Date()).toString())  );
-
   const timeinterval = setInterval(() => {
+
     const t = getTimeRemaining(startTime);
     const headline: any = document.getElementById(`${id}headline-timer`);
     const days: any = document.getElementById(`${id}days`);

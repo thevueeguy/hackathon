@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Dropdown, Form, InputGroup, Container } from "react-bootstrap";
+import { Container, Dropdown, Form, InputGroup } from "react-bootstrap";
 import { DebounceInput } from "react-debounce-input";
 
 interface ISearchProps {
@@ -9,11 +9,44 @@ interface ISearchProps {
 
 const Search: React.FunctionComponent<ISearchProps> = (props) => {
   const [search, setSearch] = useState<string>("");
+  const [easyCheck, setEasyCheck] = useState<boolean | null>();
+  const [mediumCheck, setMediumCheck] = useState<boolean | null>();
+  const [hardCheck, setHardCheck] = useState<boolean | null>();
+
   useEffect(() => {
     axios.get(`http://localhost:8000/hackathons?q=${search}`).then((res) => {
       props.setCards(res.data);
     });
   }, [search]);
+
+  useEffect(() => {
+    if (!(easyCheck || mediumCheck || hardCheck)) {
+      axios.get(`http://localhost:8000/hackathons?q=${search}`).then((res) => {
+        props.setCards(res.data);
+      });
+    } else {
+      let url = "http://localhost:8000/hackathons?";
+      if (!easyCheck) {
+        url += "level_ne=Easy";
+      }
+      if (!mediumCheck) {
+        if(url.slice(-1)!=='?')
+        url+='&';
+        url += "level_ne=Medium";
+      }
+      if (!hardCheck) {
+        if(url.slice(-1)!=='?')
+        url+='&';
+        url += "level_ne=Hard";
+      }
+
+      console.log(url)
+
+      axios.get(url).then((res) => {
+        props.setCards(res.data);
+      });
+    }
+  }, [easyCheck, mediumCheck, hardCheck]);
 
   return (
     <div style={{ minHeight: "20rem", backgroundColor: "rgb(4, 45, 63)" }}>
@@ -45,9 +78,50 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                <Form.Label className=" mx-4 my-2 text-muted">
+                  Status
+                </Form.Label>
+                <Form.Check
+                  label="Active"
+                  name="group1"
+                  type="checkbox"
+                  className="mx-4 my-2"
+                />
+                <Form.Check
+                  label="Incoming"
+                  name="group1"
+                  type="checkbox"
+                  className="mx-4 my-2"
+                />
+                <Form.Check
+                  label="Past"
+                  name="group1"
+                  type="checkbox"
+                  className="mx-4 my-2 pb-2"
+                />
+                <Dropdown.Divider />
+                <Form.Label className=" mx-4 my-2 text-muted">Level</Form.Label>
+                <Form.Check
+                  label="Easy"
+                  name="group1"
+                  type="checkbox"
+                  className="mx-4 my-2"
+                  onChange={(e) => setEasyCheck(e.target.checked)}
+                />
+                <Form.Check
+                  label="Medium"
+                  name="group1"
+                  type="checkbox"
+                  className="mx-4 my-2"
+                  onChange={(e) => setMediumCheck(e.target.checked)}
+                />
+                <Form.Check
+                  label="Hard"
+                  name="group1"
+                  type="checkbox"
+                  className="mx-4 my-2 pb-2"
+                  onChange={(e) => setHardCheck(e.target.checked)}
+                />
               </Dropdown.Menu>
             </Dropdown>
           </Form.Group>

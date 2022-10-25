@@ -1,4 +1,5 @@
-import React, { FormEvent, useRef, useState } from "react";
+import axios from "axios";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { Button, Container, Dropdown, Form } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
@@ -13,14 +14,26 @@ const CreateForm: React.FunctionComponent<ICreateFormProps> = (props) => {
   const fileInput = useRef<HTMLInputElement>(document.createElement("input"));
   const FormRef = useRef<HTMLFormElement>(document.createElement("form"));
 
-  const [name, setName] = useState<String>("");
-  const [startDate, setStartDate] = useState<String>("");
-  const [endDate, setEndDate] = useState<String>("");
-  const [description, setDescription] = useState<String>("");
+  const [name, setName] = useState<string>("");
+  const [startDate, setStartDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const [image, setImage] = useState<FileList | null>(null);
   const [level, setLevel] = useState<String | null>("Easy");
 
   const params = useParams();
+
+  useEffect(()=> {
+    axios.get(`http://localhost:8000/hackathons/${params.id}`).then((res) => {
+      setName(res.data.name);
+      setStartDate(res.data.endDate);  
+      setEndDate(res.data.endDate);  
+      setDescription(res.data.description);
+      setLevel(res.data.level);
+    }).catch((e) => {
+      //
+    });
+  }, [])
 
   function addHackathon(e: FormEvent) {
     e.preventDefault();
@@ -47,7 +60,7 @@ const CreateForm: React.FunctionComponent<ICreateFormProps> = (props) => {
           <Form.Label className="fs-5 mb-4">Challenge Name</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter title"
+            value={name.length > 0 ? name : ""}
             onChange={(e) => setName(e.target.value)}
           />
         </Form.Group>
@@ -56,6 +69,7 @@ const CreateForm: React.FunctionComponent<ICreateFormProps> = (props) => {
           <Form.Label className="fs-5 mb-4">Start Date</Form.Label>
           <Form.Control
             type="date"
+            value={startDate.length > 0 ? startDate : ""}
             onChange={(e) => setStartDate(e.target.value)}
           />
         </Form.Group>
@@ -64,6 +78,7 @@ const CreateForm: React.FunctionComponent<ICreateFormProps> = (props) => {
           <Form.Label className="fs-5 mb-4">End Date</Form.Label>
           <Form.Control
             type="date"
+            value={endDate.length > 0 ? endDate : ""}
             onChange={(e) => setEndDate(e.target.value)}
           />
         </Form.Group>
@@ -74,6 +89,7 @@ const CreateForm: React.FunctionComponent<ICreateFormProps> = (props) => {
             type="text"
             as="textarea"
             rows={10}
+            value={description.length > 0 ? description : ""}
             onChange={(e) => setDescription(e.target.value)}
           />
         </Form.Group>
@@ -96,7 +112,7 @@ const CreateForm: React.FunctionComponent<ICreateFormProps> = (props) => {
             variant="outline-dark fs-5 px-5"
           >
             Upload
-            <img src="./icons/upload.svg" alt="upload" className="mx-2" />
+            <img src="/icons/upload.svg" alt="upload" className="mx-2" />
           </Button>
           <Form.Text className="d-block">{image && image[0].name}</Form.Text> 
         </Form.Group>

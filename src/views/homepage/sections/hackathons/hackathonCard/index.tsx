@@ -30,7 +30,7 @@ const HackathonCard: React.FunctionComponent<IhackathonCardProps> = (
     return ()=> {
       clearInterval(timeInterval);
     }
-  }, [props.EndDate, props.StartDate, props.id])
+  }, [])
 
   return (
     <Card
@@ -38,10 +38,10 @@ const HackathonCard: React.FunctionComponent<IhackathonCardProps> = (
         maxWidth: "24rem",
         margin: "2rem",
         padding: 0,
-        borderRadius: "1rem",
+        borderRadius: "1.2rem",
         textAlign: "center",
       }}
-      className="shadow-lg bg-white "
+      className="shadow-lg bg-white border-0"
     >
       <Card.Img
         variant="top"
@@ -52,9 +52,9 @@ const HackathonCard: React.FunctionComponent<IhackathonCardProps> = (
 
         <p className="w-50 mx-auto py-1 mb-4 rounded fw-bold" id={`hackathonPage/${props.id}badge-timer`}></p>
 
-        <Card.Title className="title-height">{props.name}</Card.Title>
+        <Card.Title ><p className="title-height ">{props.name}</p></Card.Title>
 
-        <div className="container-timer">
+        <div className="container-timer" id={`hackathonPage/${props.id}container-timer`}>
           <h5
             id={`hackathonPage/${props.id}headline-timer`}
             className="headline-timer"

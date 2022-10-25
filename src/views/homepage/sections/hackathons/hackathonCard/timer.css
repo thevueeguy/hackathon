@@ -10,14 +10,14 @@
 }
 
 .image-height {
-  max-height: 200px;
+  height: 200px;
   object-fit: cover;
 }
 
 /* body  */
 
 .body-height {
-  height: 300px;
+  height: 350px;
   margin: 1rem 0;
 }
 
@@ -53,7 +53,7 @@
 }
 
 .title-height {
-  height: 20%;
+  height: 35px;
 }
 
 .countdown-timer {
