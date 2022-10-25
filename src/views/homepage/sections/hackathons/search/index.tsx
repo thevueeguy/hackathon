@@ -14,14 +14,14 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
   const [hardCheck, setHardCheck] = useState<boolean | null>();
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/hackathons?q=${search}`).then((res) => {
-      props.setCards(res.data);
-    });
-  }, [search]);
-
-  useEffect(() => {
     if (!(easyCheck || mediumCheck || hardCheck)) {
-      axios.get(`http://localhost:8000/hackathons?q=${search}`).then((res) => {
+      let url = "http://localhost:8000/hackathons?";
+      if(search !== "") {
+        if(url.slice(-1)!=='?')
+        url+='&';
+        url += `q=${search}`;
+      }
+      axios.get(url).then((res) => {
         props.setCards(res.data);
       });
     } else {
@@ -39,14 +39,16 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
         url+='&';
         url += "level_ne=Hard";
       }
-
-      console.log(url)
-
+      if(search !== "") {
+        if(url.slice(-1)!=='?')
+        url+='&';
+        url += `q=${search}`;
+      }
       axios.get(url).then((res) => {
         props.setCards(res.data);
       });
     }
-  }, [easyCheck, mediumCheck, hardCheck]);
+  }, [easyCheck, hardCheck, mediumCheck, search]);
 
   return (
     <div style={{ minHeight: "20rem", backgroundColor: "rgb(4, 45, 63)" }}>

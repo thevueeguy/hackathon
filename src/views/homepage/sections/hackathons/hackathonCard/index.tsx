@@ -30,7 +30,7 @@ const HackathonCard: React.FunctionComponent<IhackathonCardProps> = (
     return ()=> {
       clearInterval(timeInterval);
     }
-  }, [])
+  }, [props.EndDate, props.StartDate, props.id])
 
   return (
     <Card
