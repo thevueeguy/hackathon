@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Container, Dropdown, Form, InputGroup } from "react-bootstrap";
 import { DebounceInput } from "react-debounce-input";
+import format from "../../../../../utilities/formatDate";
+import { getTimeRemaining } from "../../../../../utilities/timer";
 
 interface ISearchProps {
   setCards: Function;
@@ -12,17 +14,51 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
   const [easyCheck, setEasyCheck] = useState<boolean | null>();
   const [mediumCheck, setMediumCheck] = useState<boolean | null>();
   const [hardCheck, setHardCheck] = useState<boolean | null>();
+  const [active, setActive] = useState<boolean | null>(false);
+  const [incoming, setIncoming] = useState<boolean | null>(false);
+  const [past, setPast] = useState<boolean | null>(false);
+
+  function filterStatus(data: any) {
+    let newData = data.filter((item: any) => {
+      let itemStatus = "";
+      if (!(active || incoming || past)) {
+        return true;
+      } else {
+        const endtime = getTimeRemaining(format(item.endDate));
+        const starttime = getTimeRemaining(format(item.startDate));
+        if (starttime.total >= 0) {
+          itemStatus = "Upcoming";
+        } else if (endtime.total >= 0) {
+          itemStatus = "Active";
+        } else {
+          itemStatus = "Past";
+        }
+      }
+      console.log(itemStatus);
+      let show: boolean = false;
+      if(active &&  itemStatus === "Active") {
+        show = true;
+      } 
+      if(incoming && itemStatus === "Upcoming") {
+        show = true;
+      } 
+      if(past && itemStatus === "Past") {
+        show = true;
+      }
+      return show;
+    });
+    return newData;
+  }
 
   useEffect(() => {
     if (!(easyCheck || mediumCheck || hardCheck)) {
       let url = "http://localhost:8000/hackathons?";
-      if(search !== "") {
-        if(url.slice(-1)!=='?')
-        url+='&';
+      if (search !== "") {
+        if (url.slice(-1) !== "?") url += "&";
         url += `q=${search}`;
       }
       axios.get(url).then((res) => {
-        props.setCards(res.data);
+        props.setCards(filterStatus(res.data));
       });
     } else {
       let url = "http://localhost:8000/hackathons?";
@@ -30,25 +66,22 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
         url += "level_ne=Easy";
       }
       if (!mediumCheck) {
-        if(url.slice(-1)!=='?')
-        url+='&';
+        if (url.slice(-1) !== "?") url += "&";
         url += "level_ne=Medium";
       }
       if (!hardCheck) {
-        if(url.slice(-1)!=='?')
-        url+='&';
+        if (url.slice(-1) !== "?") url += "&";
         url += "level_ne=Hard";
       }
-      if(search !== "") {
-        if(url.slice(-1)!=='?')
-        url+='&';
+      if (search !== "") {
+        if (url.slice(-1) !== "?") url += "&";
         url += `q=${search}`;
       }
       axios.get(url).then((res) => {
-        props.setCards(res.data);
+        props.setCards(filterStatus(res.data));
       });
     }
-  }, [easyCheck, hardCheck, mediumCheck, search]);
+  }, [easyCheck, hardCheck, mediumCheck, active, incoming, past, search]);
 
   return (
     <div style={{ minHeight: "20rem", backgroundColor: "rgb(4, 45, 63)" }}>
@@ -88,18 +121,21 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
                   name="group1"
                   type="checkbox"
                   className="mx-4 my-2"
+                  onChange={(e) => setActive(e.target.checked)}
                 />
                 <Form.Check
                   label="Incoming"
                   name="group1"
                   type="checkbox"
                   className="mx-4 my-2"
+                  onChange={(e) => setIncoming(e.target.checked)}
                 />
                 <Form.Check
                   label="Past"
                   name="group1"
                   type="checkbox"
                   className="mx-4 my-2 pb-2"
+                  onChange={(e) => setPast(e.target.checked)}
                 />
                 <Dropdown.Divider />
                 <Form.Label className=" mx-4 my-2 text-muted">Level</Form.Label>

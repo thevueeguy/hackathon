@@ -1,8 +1,9 @@
+
 function parseDate(data: any): any {
   return Date.parse(data);
 }
 
-function getTimeRemaining(startTime: any) {
+export function getTimeRemaining(startTime: any) {
   const total = parseDate(new Date(startTime)) - parseDate(new Date());
   const seconds = Math.floor((total / 1000) % 60);
   const minutes = Math.floor((total / 1000 / 60) % 60);
@@ -19,6 +20,7 @@ function getTimeRemaining(startTime: any) {
 }
 
 export function initializeClock(id: any, startTime: any, endTime: any) {
+  let status = "";
   const timeinterval = setInterval(() => {
 
     const t = getTimeRemaining(startTime);
@@ -60,7 +62,8 @@ export function initializeClock(id: any, startTime: any, endTime: any) {
     } else {
       headline.innerHTML = "Starts in";
     }
+    status = badge.innerHTML;
   }, 1000);
 
-  return timeinterval;
+  return {timeinterval, status};
 }
