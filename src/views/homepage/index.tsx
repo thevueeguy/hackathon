@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import CreateHackathon from "./sections/createHackathon";
-import Opportunity from "./sections/opportunity";
 import Hackathons from "./sections/hackathons";
+import Opportunity from "./sections/opportunity";
 
 interface IHomepageProps {
     //
