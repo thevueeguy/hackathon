@@ -24,7 +24,7 @@ const CreateForm: React.FunctionComponent<ICreateFormProps> = (props) => {
   const params = useParams();
 
   useEffect(()=> {
-    axios.get(`http://localhost:8000/hackathons/${params.id}`).then((res) => {
+    axios.get(`https://hackathon-json.herokuapp.com/hackathons/${params.id}`).then((res) => {
       setName(res.data.name);
       setStartDate(res.data.endDate);  
       setEndDate(res.data.endDate);  

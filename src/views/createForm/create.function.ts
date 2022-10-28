@@ -47,7 +47,7 @@ export default async function uploadData(data: formData) {
   };
 
   axios
-    .post("http://localhost:8000/hackathons", {
+    .post("https://hackathon-json.herokuapp.com/hackathons", {
       ...dataBody,
     })
     .then((response) => response.data)
@@ -73,7 +73,7 @@ export async function editData(data: formDataEdit) {
   };
 
   axios
-    .patch(`http://localhost:8000/hackathons/${data.id}`, {
+    .patch(`https://hackathon-json.herokuapp.com/hackathons/${data.id}`, {
       ...dataBody,
     })
     .then((response) => response.data)

@@ -52,7 +52,7 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
 
   useEffect(() => {
     if (!(easyCheck || mediumCheck || hardCheck)) {
-      let url = "http://localhost:8000/hackathons?";
+      let url = "https://hackathon-json.herokuapp.com/hackathons?";
       if (search !== "") {
         if (url.slice(-1) !== "?") url += "&";
         url += `q=${search}`;
@@ -61,7 +61,7 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
         props.setCards(filterStatus(res.data));
       });
     } else {
-      let url = "http://localhost:8000/hackathons?";
+      let url = "https://hackathon-json.herokuapp.com/hackathons?";
       if (!easyCheck) {
         url += "level_ne=Easy";
       }

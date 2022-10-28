@@ -25,13 +25,13 @@ const HackathonPage: React.FunctionComponent<IHackathonPageProps> = (props) => {
   const params = useParams();
 
   const handleDelete = function() {
-    axios.delete(`http://localhost:8000/hackathons/${params.id}`).then((res) => {
+    axios.delete(`https://hackathon-json.herokuapp.com/hackathons/${params.id}`).then((res) => {
       toast.success("Deleted Successfully");
     });
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/hackathons/${params.id}`).then((res) => {
+    axios.get(`https://hackathon-json.herokuapp.com/hackathons/${params.id}`).then((res) => {
       setName(res.data.name);
       setStartDate((new Date(res.data.startDate)).toString());
       setDescription(res.data.description);

@@ -12,7 +12,7 @@ const Hackathons: React.FunctionComponent<IHackathonsProps> = (props) => {
   const [cards, setCards] = useState<Array<Object> | null>();
 
   useEffect(() => {
-    axios.get("http://localhost:8000/hackathons").then((res) => {
+    axios.get("https://hackathon-json.herokuapp.com/hackathons").then((res) => {
       setCards(res.data);
     });
   }, []);
