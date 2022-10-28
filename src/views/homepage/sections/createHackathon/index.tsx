@@ -27,7 +27,7 @@ const CreateHackathon: React.FunctionComponent<ICreateHackathonProps> = (
               <p className="text-light fs-4 mx-5 my-4">
                 AI Challenges at DPhi simulate real-world problems. It is a
                 great place to put your AI/Data Science skills to test on
-                diverse datasets allowing you to foster learning through
+                diverse datasets allowing you to faster learning through
                 competitions.
               </p>
               <Link to="createForm">

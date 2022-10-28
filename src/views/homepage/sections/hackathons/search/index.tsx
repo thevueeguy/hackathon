@@ -47,7 +47,6 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
       }
       return show;
     });
-    console.log(newData);
     return newData;
   }
 
@@ -80,7 +79,6 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
         url += `q=${search}`;
       }
       axios.get(url).then((res) => {
-        console.log(filterStatus(res.data));
         props.setCards(filterStatus(res.data));
       });
     }

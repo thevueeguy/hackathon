@@ -11,12 +11,6 @@ interface IHackathonsProps {
 const Hackathons: React.FunctionComponent<IHackathonsProps> = (props) => {
   const [cards, setCards] = useState<Array<Object> | null>();
 
-  useEffect(() => {
-    // axios.get("https://hackathon-json.herokuapp.com/hackathons").then((res) => {
-    //   setCards(res.data);
-    // });
-  }, []);
-
   return (
     <div style={{backgroundColor:"#003145"}}>
       <Search setCards={setCards} />
