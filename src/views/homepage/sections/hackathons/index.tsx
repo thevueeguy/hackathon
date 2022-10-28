@@ -12,9 +12,9 @@ const Hackathons: React.FunctionComponent<IHackathonsProps> = (props) => {
   const [cards, setCards] = useState<Array<Object> | null>();
 
   useEffect(() => {
-    axios.get("https://hackathon-json.herokuapp.com/hackathons").then((res) => {
-      setCards(res.data);
-    });
+    // axios.get("https://hackathon-json.herokuapp.com/hackathons").then((res) => {
+    //   setCards(res.data);
+    // });
   }, []);
 
   return (
@@ -26,7 +26,7 @@ const Hackathons: React.FunctionComponent<IHackathonsProps> = (props) => {
           style={{ padding: "0 10rem" }}
         >
           {cards && cards.length > 0 ? (
-            cards.map((item: any, index) => {
+            cards.map((item: any, index: any) => {
               return (
                 <HackathonCard
                   key={index}

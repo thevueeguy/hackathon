@@ -26,7 +26,7 @@ const HackathonCard: React.FunctionComponent<IhackathonCardProps> = (
       `hackathonPage/${props.id}`,
       format(props.StartDate),
       format(props.EndDate)
-    );
+    );  
 
     return ()=> {
       clearInterval(data.timeinterval);

@@ -34,7 +34,7 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
           itemStatus = "Past";
         }
       }
-      console.log(itemStatus);
+      
       let show: boolean = false;
       if(active &&  itemStatus === "Active") {
         show = true;
@@ -47,6 +47,7 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
       }
       return show;
     });
+    console.log(newData);
     return newData;
   }
 
@@ -58,6 +59,7 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
         url += `q=${search}`;
       }
       axios.get(url).then((res) => {
+        console.log(filterStatus(res.data));
         props.setCards(filterStatus(res.data));
       });
     } else {
@@ -78,6 +80,7 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
         url += `q=${search}`;
       }
       axios.get(url).then((res) => {
+        console.log(filterStatus(res.data));
         props.setCards(filterStatus(res.data));
       });
     }

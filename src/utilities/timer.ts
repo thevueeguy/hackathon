@@ -38,13 +38,13 @@ export function initializeClock(id: any, startTime: any, endTime: any) {
     badge.style.backgroundColor  = "antiquewhite";
     badge.innerHTML = "Upcoming";
 
-    if (t.total <= 0) {
+    if (t.total < 0) {
       const u = getTimeRemaining(endTime);
-      if (u.total <= 0) {
+      if (u.total < 0) {
         clearInterval(timeinterval);
         headline.innerHTML = "Ended on";
         const ele: any = document.getElementById(`${id}countdown-timer`);
-        ele.innerHTML = `<p>${new Date(endTime)}</p>`;
+        ele.innerHTML = `<p>${new Date(endTime) }</p>`;
         badge.style.backgroundColor  = "mistyrose";
         badge.style.color  = "grey";
         badge.innerHTML = "Past";
